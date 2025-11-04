@@ -10,9 +10,41 @@ public class PalindromeWithStackQueue {
      * ignoring case and non-alphanumeric characters.
      * Use Stack and Queue provided by Java's standard library.
      */
-    public static boolean isPalindrome(String s)
-    {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public static boolean isPalindrome(String s) {
+        if (s == null) {
+            throw new IllegalArgumentException("String cannot be null");
+        }
+
+        int length = s.length();
+        char ch;
+
+        // Create stack and queue
+        Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new java.util.LinkedList<>();
+
+        // Obtain and handle characters
+        for (int i = 0; i < length; i++) {
+            ch = s.charAt(i);
+            if (Character.isLetterOrDigit(ch)) { // Including digits as per your normalize method
+                ch = Character.toLowerCase(ch);
+                stack.push(ch);
+                queue.add(ch);
+            }
+        }
+
+        // Determine if palindrome
+        boolean stillPalindrome = true;
+        while (stillPalindrome && !stack.isEmpty()) {
+            char fromStack = stack.pop();
+            char fromQueue = queue.remove();
+
+            if (fromStack != fromQueue) {
+                stillPalindrome = false;
+            }
+        }
+
+        // Return result
+        return stillPalindrome;
     }
 
     // Optional helper method for normalization
@@ -26,3 +58,4 @@ public class PalindromeWithStackQueue {
         return sb.toString();
     }
 }
+
