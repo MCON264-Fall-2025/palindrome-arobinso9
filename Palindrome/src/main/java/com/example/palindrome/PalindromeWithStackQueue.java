@@ -25,7 +25,7 @@ public class PalindromeWithStackQueue {
         // Obtain and handle characters
         for (int i = 0; i < length; i++) {
             ch = s.charAt(i);
-            if (Character.isLetterOrDigit(ch)) { // Including digits as per your normalize method
+            if (Character.isLetterOrDigit(ch)) {
                 ch = Character.toLowerCase(ch);
                 stack.push(ch);
                 queue.add(ch);
